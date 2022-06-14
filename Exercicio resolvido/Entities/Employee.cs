@@ -19,9 +19,9 @@ namespace Course.Entities
             ValuePerHour = valuePerHour;
         }
 
-        public virtual double Payment(int hours, double value)
+        public virtual double Payment()
         {
-            return hours * value;
+            return Hours * ValuePerHour;
         }
     }
 }

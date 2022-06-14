@@ -18,34 +18,23 @@ namespace Course
             {
                 Console.WriteLine("Employee #" + i + " data:");
                 Console.Write("Outsourced (y/n)? ");
-                string outsource = Console.ReadLine();
+                char outsource = char.Parse(Console.ReadLine());
+                Console.Write("Name: ");
+                string name = Console.ReadLine();
+                Console.Write("Hours: ");
+                int hours = int.Parse(Console.ReadLine());
+                Console.Write("Value per hour: $");
+                double value = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
 
-                if(outsource == "y")
+                if (outsource == 'y')
                 {
-                    Console.Write("Name: ");
-                    string name = Console.ReadLine();
-                    Console.Write("Hours: ");
-                    int hours = int.Parse(Console.ReadLine());
-                    Console.Write("Value per hour: $");
-                    double value = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
                     Console.Write("Additional Charge: $");
                     double additional = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-
-                    Employee employee = new OutsourceEmployee(name, hours, value, additional);
-                    employees.Add(employee);
+                    employees.Add(new OutsourceEmployee(name, hours, value, additional));
                 }
-                if(outsource == "n")
+                if(outsource == 'n')
                 {
-                    Console.Write("Name: ");
-                    string name = Console.ReadLine();
-                    Console.Write("Hours: ");
-                    int hours = int.Parse(Console.ReadLine());
-                    Console.Write("Value per hour: $");
-                    double value = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-                    
-                    Employee employee = new Employee(name, hours, value);
-                    employees.Add(employee);
-
+                    employees.Add(new Employee(name, hours, value));
                 }
                 
                
@@ -54,10 +43,7 @@ namespace Course
             Console.WriteLine("Payments: ");
             foreach (Employee employee in employees)
             {
-                int hrs = employee.Hours;
-                double vl = employee.ValuePerHour;
-                double payment = employee.Payment(hrs, vl);
-                Console.WriteLine(employee.Name + " - $" + payment.ToString("F2", CultureInfo.InvariantCulture));
+                Console.WriteLine(employee.Name + " - $" + employee.Payment().ToString("F2", CultureInfo.InvariantCulture));
             }
         }
     }

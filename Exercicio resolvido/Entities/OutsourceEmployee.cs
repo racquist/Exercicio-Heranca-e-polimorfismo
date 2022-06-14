@@ -15,9 +15,9 @@ namespace Course.Entities
             AdditionalCharge = additionalCharge;
         }
 
-        public sealed override double Payment(int hours, double value)
+        public sealed override double Payment()
         {
-            return (hours * value) + (AdditionalCharge*1.1);
+            return (Hours * ValuePerHour) + (AdditionalCharge*1.1);
         }
     }
 }
